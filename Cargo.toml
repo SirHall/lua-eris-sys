@@ -1,0 +1,22 @@
+[package]
+name = "lua-eris-sys"
+version = "0.1.0"
+edition = "2021"
+description = "Low-level bindings to Lua 5.3.5 + Eris (persistence library). Bundles fnuecke/eris which adds eris_persist/eris_unpersist for full-state serialization including suspended coroutines."
+license = "MIT"
+# Uniquely-named links so this coexists with mlua-sys's own Lua (Cargo
+# forbids two crates in the graph claiming the same native library name).
+# mlua integration will use env-var-based linking (MLUA_LUA53_LIB etc.)
+# instead of relying on cargo's links metadata.
+links = "lua-eris"
+build = "build.rs"
+
+[lib]
+# No cdylib — we expose a Rust surface that re-exports the C API
+# via extern blocks.
+
+[build-dependencies]
+cc = "1.0"
+
+# Development-only tests use just the raw C API.
+[dev-dependencies]
