@@ -69,8 +69,8 @@ fn main() {
             build.define("LUA_USE_LINUX", None);
         }
         _ => {
-            // Windows and others: leave luaconf.h's defaults. This
-            // project targets macOS/Linux primarily.
+            // Windows and others: luaconf.h auto-defines LUA_USE_WINDOWS
+            // when _WIN32 is set, so no explicit define is needed.
         }
     }
 

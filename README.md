@@ -2,7 +2,7 @@
 
 Bundles **Lua 5.3.5 + [Eris](https://github.com/fnuecke/eris)** (Florian Nuecke's persistence library) and compiles them into a single static library `liblua-eris.a`. Provides minimal Rust FFI bindings for the subset of the Lua C API + Eris's `eris_persist`/`eris_unpersist` needed for testing.
 
-**You probably don't want to use this crate directly.** Use [`mlua-eris`](../mlua-eris) instead — it provides a safe API on top of `mlua` that handles perms-table management, error wrapping, and the C-function loader.
+**You probably don't want to use this crate directly.** Use [`mlua-eris`](https://crates.io/crates/mlua-eris) instead — it provides a safe API on top of `mlua` that handles perms-table management, error wrapping, and the C-function loader.
 
 ## What's bundled
 
@@ -22,7 +22,7 @@ cargo build              # builds liblua-eris.a in OUT_DIR
 cargo test               # runs FFI roundtrip tests
 ```
 
-The build script uses `cc` to compile all 34 .c files into a single archive. macOS and Linux supported (`LUA_USE_MACOSX`, `LUA_USE_LINUX`). Windows would need a build.rs adjustment.
+The build script uses `cc` to compile all 34 .c files into a single archive. macOS, Linux, and Windows are supported (`LUA_USE_MACOSX`, `LUA_USE_LINUX`, and `_WIN32`'s automatic `LUA_USE_WINDOWS`).
 
 ## Linking from another crate
 
